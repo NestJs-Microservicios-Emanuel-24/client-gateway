@@ -1,0 +1,7 @@
+export enum ProductActions {
+     CREATE = 'PRODUCT_CREATE',
+     GET_ALL = 'PRODUCT_GET_ALL',
+     GET_ONE_BY_ID = 'PRODUCT_GET_ONE_BY_ID',
+     UPDATE = 'PRODUCT_UPDATE',
+     DELETE = 'PRODUCT_DELETE',
+   }
