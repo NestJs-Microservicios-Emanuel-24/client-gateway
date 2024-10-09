@@ -18,9 +18,7 @@ import { CreateOrderDto, OrderPaginationDto, StatusDto } from './dto';
 
 @Controller('orders')
 export class OrdersController {
-  constructor(
-    @Inject(NATS_SERVICE) private readonly cliente: ClientProxy,
-  ) {}
+  constructor(@Inject(NATS_SERVICE) private readonly cliente: ClientProxy) {}
 
   @Post()
   createOrden(@Body() createOrderDto: CreateOrderDto) {
@@ -43,8 +41,15 @@ export class OrdersController {
   }
 
   @Get()
-  findAllOrden(@Query() orderPaginationDto: OrderPaginationDto) {
-    return this.cliente.send(OrderActions.GET_ALL, orderPaginationDto);
+ async findAllOrden(@Query() orderPaginationDto: OrderPaginationDto) {
+    try {
+      const orders = await firstValueFrom(
+        this.cliente.send(OrderActions.GET_ALL, orderPaginationDto),
+      );
+      return orders
+    } catch (error) {
+      throw new RpcException(error);
+    }
   }
 
   @Get(':status')

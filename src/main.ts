@@ -6,7 +6,7 @@ import { RpcCustomExceptionFilter } from './common';
 
 
 async function bootstrap() {
-  const logger  = new Logger('Main-Gateway')
+  const logger = new Logger('\x1b[34m*****CLIENT GATEWAY******\x1b[0m');
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api')
   app.useGlobalPipes(
