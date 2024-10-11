@@ -1,11 +1,6 @@
 import {
   ArrayMinSize,
   IsArray,
-  IsBoolean,
-  IsEnum,
-  IsNumber,
-  IsOptional,
-  IsPositive,
   ValidateNested,
 } from 'class-validator';
 import { OrderStatus, OrderStatusList } from '../enum/order.enum';
